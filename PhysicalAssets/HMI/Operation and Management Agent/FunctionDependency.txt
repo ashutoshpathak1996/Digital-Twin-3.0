@@ -1,0 +1,7 @@
+function1=>[function2, function3]
+OrderStatus=>[]
+inventory_manager_purchase_req=>[]
+inventory_manager_finished_goods=>[]
+inventory_manager_raw_materials_details_floor=>[]
+inventory_manager_wip_details=>[]
+inventory_manager_raw_materials_details_machine=>[]
