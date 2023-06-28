@@ -1,0 +1,30 @@
+{% extends 'baseinterface.html' %}
+ 
+
+{% block content %}
+{% csrf_token %}
+<div class="container">
+    <div class="row">
+      <div class="col sidebar" style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+          <h5 class = " mt-4"> Twin Template </h5> <hr>
+
+        <div class="list-group">
+            
+            <a href="{%url 'verticalcncmilling' %}" class="list-group-item list-group-item-action">Vertical CNC Milling</a>
+            
+          </div>       
+      </div>
+
+      <!-- Digital representation div.// -->
+      <div class="col-9 border border-primary" style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+        <h5 class = " mt-4 text-center"> Register Your Twin! </h5> <hr>
+        {%include "includes/alerts.html"%}
+        {% block templatecontent %}
+        
+        {% endblock %}
+      </div>
+
+    </div>
+
+  </div>
+{% endblock %}

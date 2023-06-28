@@ -1,0 +1,62 @@
+
+{% extends 'TwinServices/orderalldetails.html' %}
+{% block orderstatus %}
+<section>
+
+    <hr>
+
+    <h6 class="text-center"> Order Status </h6>
+    
+    
+       
+
+            
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Job Id</th>
+                        <th scope="col">Due Date(YY-MM-DD)</th>
+                        <th scope="col">Route</th>
+                        
+                        <th scope="col">Current Location</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        
+                            <tr>
+                                <th scope="row">{{item.job_id}}</th>
+                                <td>{{item.due_date}}</td>
+                                <td>{{item.route}}</td>
+                                <th scope="row">{{item.current_location}}</th>
+                                
+                                
+                            </tr>                     
+                            {% endfor %}
+                        
+                </tbody>
+            
+              </table>
+             
+                        
+              
+              
+
+      
+
+    
+   
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

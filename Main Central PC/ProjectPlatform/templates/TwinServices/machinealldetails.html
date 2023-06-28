@@ -1,0 +1,16 @@
+{% extends 'TwinServices/analyticsmain.html' %}
+{% block Servicecontent %}
+    <section id = "condition_status">
+        <h6 class = "text-center my-4">Details are following</h6>
+        <div class = "row">
+            <a class="mx-2" href="{% url 'machine_alldetails_conn' %}"> Click here </a> to fetch details
+             
+        </div>
+        {% block condition_status%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}

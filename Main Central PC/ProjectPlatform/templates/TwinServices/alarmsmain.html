@@ -1,0 +1,48 @@
+{% extends 'baseinterface.html' %}
+{% block content %}
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2 text-center"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h6 class="text-center my-2">Alarms</h6>
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active"
+                       id="list-Planning-list"
+                       data-toggle="list"
+                       href="#list-Planning"
+                       role="tab"
+                       aria-controls="Planning">Alarm Generation</a>
+              
+                </div>
+            </div>
+            <div class="col-2"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h6 class="text-center my-2">Regarding</h6>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active"
+                         id="list-Planning"
+                         role="tabpanel"
+                         aria-labelledby="list-Planning-list">
+                        <div class="list-group">
+                            <a href="{% url 'alarmsmachine' %}" class="list-group-item list-group-item-action">Machine Based Alarms</a>
+                            <a href="{% url 'alarmstool' %}" class="list-group-item list-group-item-action ">Tool Based Alarms</a>
+                           
+                        </div>
+                    </div>
+                    <div class="tab-pane fade"
+                         id="list-Control"
+                         role="tabpanel"
+                         aria-labelledby="list-Control-list">...</div>
+                </div>
+            </div>
+            <div class="col-8"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                 {% block Servicecontent %}
+        
+                 {% endblock %}
+            </div>
+            <!-- divison for rown ending is next -->
+        </div>
+    </div>
+{% endblock %}

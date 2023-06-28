@@ -1,0 +1,62 @@
+
+{% extends 'TwinServices/finishedgoods.html' %}
+{% block finishedgoods %}
+<section>
+
+    <hr>
+
+    
+    
+    {% for item in data %}
+        {% for key, value in item.items %}
+
+            {% if key == 'finishedgoods' %}
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Job Id</th>
+                        <th scope="col">Twin Name</th>
+                        <th scope="col">Floor No.</th>
+                        <th scope="col">Date(YY-MM-DD)</th>
+                        <th scope="col">Time</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for itemlist in value %}
+                        
+                            <tr>
+                                <th scope="row">{{itemlist.job_id}}</th>
+                                <td>{{item.twinName}}</td>
+                                <td>{{item.floorno}}</td>
+                                <th scope="row">{{itemlist.date}}</th>
+                                <th scope="row">{{itemlist.time}}</th>
+                                
+                            </tr>                     
+                        
+                        {% endfor %}
+                </tbody>
+            
+              </table>
+              {% endif %}
+            {% endfor %}
+              
+              
+
+      
+
+    {% endfor %}
+   
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

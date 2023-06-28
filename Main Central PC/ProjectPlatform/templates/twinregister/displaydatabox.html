@@ -1,0 +1,159 @@
+{%extends 'twinregister/twindisplaydata.html'%}
+{% load static %}
+
+{% block datacontent %}
+<section id="datacontent">
+
+<div class="row">
+    <div class="col-lg-4 ">
+        <h5> Name : {{ selected_model.display_name }} </h5>
+    </div>
+    <div class="col-lg-3 my-1">
+        <h5>Twin Id : {{ selected_model.twin_id }} </h5>
+    </div>
+    <div class="col-lg-3 my-1">
+        {% if selected_model.emergency_on %}
+        <h5 class="text-danger">Emergency : ON </h5>
+        {% endif %}
+        {% if selected_model.emergency_on == 0 %}
+        <h5 class="text-success">Emergency : OFF </h5>
+        {% endif %}
+    </div>
+
+</div>
+<table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Floor No.</th>
+        <th scope="col">Spindle Status</th>
+        <th scope="col">Coolant Status</th>
+        <th scope="col">Program Cycle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{selected_model.floor_id}}</th>
+        {% if selected_model.spindle_on %}        
+        <td> ON</td>
+        {% else %}
+        <td> OFF</td>
+        {% endif %}
+        {% if selected_model.coolant_on %}        
+        <td> Running</td>
+        {% else %}
+        <td> Not started</td>
+        {% endif %}
+        {% if selected_model.cycle_on %}        
+        <td> Running</td>
+        {% else %}
+        <td> Not started</td>
+        {% endif %}
+        
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">MaxTravel(X)</th>
+        <th scope="col">MaxTravel(Y)</th>
+        <th scope="col">MaxTravel(Z)</th>
+        <th scope="col">WCSOffset(X)</th>
+        <th scope="col">WCSOffset(Y)</th>
+        <th scope="col">WCSOffset(Z)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{selected_model.maxtravel_X}}</td>
+        <td>{{selected_model.maxtravel_Y}}</td>
+        <td>{{selected_model.maxtravel_Z}}</td>
+        <td>{{selected_model.wcsoffset_X}}</td>
+        <td>{{selected_model.wcsoffset_Y}}</td>
+        <td>{{selected_model.wcsoffset_Z}}</td>
+
+      </tr>
+      
+    </tbody>
+  </table>
+
+    <div class="row">
+
+        <div class="col-4">
+
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Tool Details</div>
+                <div class="card-body aasdiv" data-value={{selected_model.tool_aas}}>
+                    <div class = "aascontent">
+                        {% for key, value in tool_data.items %}
+                        <div class = "row">
+                            <h6 class = "text-primary"> {{key}} :  </h6>
+                            <span class = "text-dark">{{value}}</span>
+                        </div>
+                        {% endfor %} 
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Spindle Details</div>
+                <div class="card-body text-primary aasdiv" data-value={{selected_model.spindle_aas}}>
+                    <div class = "aascontent">
+                        {% for key, value in spindle_data.items %}
+                        <div class = "row">
+                            <h6 class = "text-primary"> {{key}} :  </h6>
+                            <span class = "text-dark">{{value}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Coolant Details</div>
+                <div class="card-body text-primary aasdiv" data-value={{selected_model.coolant_aas}}>
+                    <div class = "aascontent">
+                        {% for key, value in coolant_data.items %}
+                        <div class = "row">
+                            <h6 class = "text-primary"> {{key}} :  </h6>
+                            <span class = "text-dark">{{value}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</section>
+<script> 
+    $(document).ready(function(){
+    setInterval(function(){
+          $("#datacontent").load(window.location.href + " #datacontent" );
+    }, 10);
+    });
+
+
+
+
+    
+    </script>
+
+
+
+{% endblock %}

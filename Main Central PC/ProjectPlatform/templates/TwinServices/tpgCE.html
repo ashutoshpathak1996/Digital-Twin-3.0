@@ -1,0 +1,30 @@
+{% extends 'baseinterface.html' %}
+{% block content %}
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h5 class = " mt-4">Tool Path Generation Machining for PCB Hole drilling</h5>
+                <hr>
+                <div class="card-deck justify-content-center ">
+                    <div class="card border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header bg-transparent border-success">Upload the STP File</div>
+                        <div class="card-body text-success">
+                            <form method="post" enctype="multipart/form-data" class="mx-auto">
+                                {% csrf_token %}
+                                <div class="form-group mt-4">
+                                    <input type="file" name="stpfile" style="max-width: 15rem;">
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-success">
+                                <button type="submit" id="generatecost" class="btn btn-primary">Download Tool Path</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /card end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

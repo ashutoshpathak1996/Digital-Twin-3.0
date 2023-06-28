@@ -1,0 +1,15 @@
+{% extends 'TwinServices/queriesmain.html' %}
+{% block Servicecontent %}
+    <section id = "Purchasereq">
+        <h6 class = "text-center my-4">Purchase Requirements are following</h6>
+        <hr>
+        <a href="{% url 'purchase_requirements_conn' %}"> Click here</a> to fetch the purchase requirements
+        <hr>
+        {% block purchase_requirements_conn%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}

@@ -1,0 +1,335 @@
+{% extends 'twininterface\maininterface.html' %}
+{% load static %}
+{% block livecontent %}
+  <section id="livecontent" class="mt-1">
+    <div class="row">
+      <div class="card border-secondary mb-3 mx-2"
+           style="max-width: 15rem;
+                  max-height: 7rem;">
+        <div class="card-header">{{ selected_model.display_name }}</div>
+        <div class="card-body text-secondary">
+          <h6 class="card-title">Twin ID : {{ selected_model.twin_id }}</h6>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      {% if selected_model.emergency_on %}
+        <div class="card text-white bg-danger mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-danger">Status : ON</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Emergency</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      {% if selected_model.emergency_on == 0 %}
+        <div class="card text-white bg-success mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-success">Status : OFF</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Emergency</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      <!-- CYCLE STATUS -->
+      {% if selected_model.cycle_on %}
+        <div class="card text-white bg-success mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-success">Status : ON</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">CYCLE</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      {% if selected_model.cycle_on == 0 %}
+        <div class="card text-white bg-warning mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-warning">Status : OFF</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">CYCLE</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      <!-- Spindle STATUS -->
+      {% if selected_model.spindle_on == 0 %}
+        <div class="card text-white bg-warning mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-warning">Status : OFF</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">SPINDLE</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      {% if selected_model.spindle_on %}
+        <div class="card text-white bg-success mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-success">Status : ON</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">SPINDLE</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      <!-- Coolant STATUS -->
+      {% if selected_model.coolant_on == 0 %}
+        <div class="card text-white bg-warning mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-warning">Status : OFF</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">COOLANT</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      {% if selected_model.coolant_on %}
+        <div class="card text-white bg-success mb-3 mx-2"
+             style="max-width: 18rem;
+                    max-height: 7rem;">
+          <div class="card-header mb-0">
+            <h6 class="text-success">Status : ON</h6>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Coolant</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+      {% endif %}
+      <!-- wcs OFFSET STATUS -->
+      <div class="card bg-light mb-3 mx-2"
+           style="max-width: 18rem;
+                  max-height: 7rem;">
+        <div class="card-header mb-0">
+          <h6>WCS Offset</h6>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">
+            <span class="text-danger">X</span> : {{ selected_model.wcsoffset_X }} | <span class="text-danger">Y</span> : {{ selected_model.wcsoffset_Y }} | <span class="text-danger">Z</span> : {{ selected_model.wcsoffset_Z }}
+        </h6>
+      </div>
+    </div>
+    <!-- /.card-header -->
+  </div>
+  <!-- Row ends -->
+
+    <!--row starts -->
+    <div class="col-5 container-fluid float-left">
+      <table class="table table-hover table-active table-bordered table-sm ">
+        <thead>
+          <tr>
+            <th scope="col" class="table-info">Axis</th>
+            <th scope="col" class="table-info">Position</th>
+            <th scope="col" class="table-danger">Max Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">X</th>
+            <td class="table-success">
+              {{ selected_model.axis_pos_x }}
+            </td>
+            <td class="table-danger">
+              {{ selected_model.maxtravel_X }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Y
+            </th>
+            <td class="table-success">
+              {{ selected_model.axis_pos_y }}
+            </td>
+            <td class="table-danger">
+              {{ selected_model.maxtravel_Y }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Z
+            </th>
+            <td class="table-success">
+              {{ selected_model.axis_pos_z }}
+            </td>
+            <td class="table-danger">
+              {{ selected_model.maxtravel_Z }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-3 continer-fluid float-left ">
+      {% if selected_model.spindle_speed|add:"0" < 8000 %}
+      <div class="card bg-secondary text-center text-white">
+        <div class="card-header " style="height: 3rem;">
+          <h5 class="text-info ">
+            Spindle Speed
+          </h5>
+        </div>
+        
+          <div class="card-body text-center" style="height: 5.6rem;">
+            <h2 class="card-title">
+              {{ selected_model.spindle_speed }}
+            </h2>
+          </div>
+        {% elif selected_model.spindle_speed|add:"0" < 15000 %}
+        <div class="card bg-warning text-center text-white">
+          <div class="card-header " style="height: 3rem;">
+            <h5 class="text-info mx-0 ">
+              Spindle RPM
+            </h5>
+          </div>
+          
+            <div class="card-body text-center" style="height: 5.6rem;">
+              <h2 class="card-title">
+                {{ selected_model.spindle_speed }}
+              </h2>
+            </div>
+        {% else %}
+        <div class="card bg-danger text-center text-white">
+          <div class="card-header " style="height: 3rem;">
+            <h5 class="text-info ">
+              Spindle Speed
+            </h5>
+          </div>
+          
+            <div class="card-body text-center" style="height: 5.6rem;">
+              <h2 class="card-title">
+                {{ selected_model.spindle_speed }}
+              </h2>
+            </div>
+        {% endif %}
+      </div>
+
+    </div>
+
+    <div class="col-4 continer-fluid float-left ">
+      <div class="card bg-secondary text-center text-white">
+        <div class="card-header " style="height: 3rem;">
+          <h5 class="text-info ">
+            Feed Rate (mm/min)
+          </h5>
+        </div>
+        
+          <div class="card-body text-center" style="height: 5.6rem;">
+            <h2 class="card-title">
+              {{ selected_model.feed_x }}
+            </h2>
+          </div>
+    </div>
+    
+</section>
+
+  <div class="container-fluid" id="data-container" style="height:300px;"></div>
+  
+</section>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script> 
+
+    
+    var chart;
+
+        function requestData()
+        {
+            // Ajax call to get the Data from Flask
+            var requests = $.get('{% url 'chartdata' %}');
+            console.log(requests);
+
+
+            var tm = requests.done(function (result)
+            {
+                var series = chart.series[0],
+                    shift = series.data.length > 60;
+                
+
+                // add the point
+                console.log(result)
+                chart.series[0].addPoint(result['spindle_rpm'], true, shift);
+                var series = chart.series[1],
+                    shift = series.data.length > 60;
+                chart.series[1].addPoint(result['feed_rate'], true, shift);
+                
+
+                // call it again after one second
+                setTimeout(requestData, 1000);
+            });
+        }
+
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'data-container',
+                    defaultSeriesType: 'spline',
+                    events: {
+                        load: requestData
+                    }
+                    
+                },
+                title: {
+                    text: 'Spindle RPM and Feed Rate'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150,
+                    maxZoom: 20 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: '',
+                        margin: 10
+                    }
+                },
+                series: [{
+                    name: 'Spindle RPM',
+                    data: []
+                },
+                {
+                  name: 'Feed Rate',
+                  data: []
+              }]
+            });
+
+        });
+
+        $(document).ready(function(){
+          setInterval(function(){
+                $("#livecontent").load(window.location.href + " #livecontent" );
+          }, 300);
+          });
+
+
+
+
+    
+</script>
+{% endblock %}

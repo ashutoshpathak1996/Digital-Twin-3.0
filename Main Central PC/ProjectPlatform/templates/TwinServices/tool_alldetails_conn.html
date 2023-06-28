@@ -1,0 +1,56 @@
+
+{% extends 'TwinServices/toolalldetails.html' %}
+{% block tool_condition_status %}
+<section>
+
+    <hr>
+
+    <h6 class="text-center"> Tool Condition </h6>
+    
+    
+       
+
+            
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">Tool Condition</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        
+                            <tr>
+                                <th scope="row">{{item.Time}}</th>
+                                <td>{{item.Tool_Condition}}</td> 
+                                
+                            </tr>                     
+                            {% endfor %}
+                        
+                </tbody>
+            
+              </table>
+             
+                        
+              
+              
+
+      
+
+    
+   
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

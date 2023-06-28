@@ -1,0 +1,71 @@
+{% load static %}
+
+<header class="section-header sticky-top ">
+    
+    
+    <section class="header-main border-bottom ">
+        <div class="container">
+    <div class="row align-items-center">
+        <div class="col-lg-2 col-md-3 col-6">
+            <a href="#" class="brand-wrap">
+                <img class="logo" src="{% static './images/logo.png' %}">
+            </a> <!-- brand-wrap.// -->
+        </div>
+        
+        <a href="{%url 'maininterface' %}" class="btn btn-outline-primary mr-3">Home</a>
+        <a href="{%url 'twinregisteration' %}" class="btn btn-outline-primary mr-3">Reg.Twin</a>
+        <a href="{%url 'twinconnection' %}" class="btn btn-outline-primary mr-3">Conn.Twin</a>
+        <a href="{%url 'twindisplaydata' %}" class="btn btn-outline-primary mr-3">DisplayData</a>
+        <a href="{%url 'alarmsmain' %}" class="btn btn-outline-primary mr-3">Alarms</a>
+        
+
+        <div class="col-lg col-sm col-md col-6 flex-grow-0">
+            <div class="category-wrap dropdown d-inline-block float-right">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
+                    <i class="fa fa-bars"></i>     Services 
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <a class="dropdown-item" href="{%url 'tpgCE' %}">Tool Path Generation </a>
+                    <a class="dropdown-item" href="{%url 'costeval' %}">Cost Evaluation</a>
+                    <a class="dropdown-item" href="{%url 'queriesmain' %}">Querying</a>
+                    <a class="dropdown-item" href="{%url 'analyticsmain' %}">Analytic Service</a>
+                    <a class="dropdown-item" href="{%url 'recommendation_service' %}">Recommendation Service</a>
+                    <a class="dropdown-item" href="{%url 'notifier_service' %}">Notifier Service</a>
+                    
+                    
+                </div>
+            </div>  <!-- category-wrap.// -->
+        </div> <!-- col.// -->
+        
+        
+        <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
+                    <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                        {% if user.id is None %}
+                        <div class="widget-header">
+                            <small class="title text-muted">Welcome guest!</small>
+                            <div>
+                            <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'register' %}"> Register</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="widget-header">
+                            <small class="title text-muted">Welcome {{user.first_name}}!</small>
+                            <div>
+                            <a href="#">Dashboard</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'logout' %}"> Logout</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                    </div> <!-- widgets-wrap.// -->
+                </div> <!-- col.// -->
+    </div> <!-- row.// -->
+        </div> <!-- container.// -->
+    </section> <!-- header-main .// -->
+    
+    
+    
+    
+    </header> <!-- section-header.// -->

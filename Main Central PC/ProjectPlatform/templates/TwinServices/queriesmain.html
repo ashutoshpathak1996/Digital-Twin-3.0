@@ -1,0 +1,79 @@
+{% extends 'baseinterface.html' %}
+{% block content %}
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2 text-center"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h6 class="text-center my-2">QUERIES</h6>
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active"
+                       id="list-Planning-list"
+                       data-toggle="list"
+                       href="#list-Planning"
+                       role="tab"
+                       aria-controls="Planning">Order status</a>
+                    <a class="list-group-item list-group-item-action"
+                       id="list-Inventory-list"
+                       data-toggle="list"
+                       href="#list-Inventory"
+                       role="tab"
+                       aria-controls="Inventory">Inventory</a>
+                    <a class="list-group-item list-group-item-action"
+                       id="list-Maintainence-list"
+                       data-toggle="list"
+                       href="#list-Maintainence"
+                       role="tab"
+                       aria-controls="Maintainence">Maintainence</a>
+                    
+                </div>
+            </div>
+            <div class="col-2"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h6 class="text-center my-2">Regarding</h6>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active"
+                         id="list-Planning"
+                         role="tabpanel"
+                         aria-labelledby="list-Planning-list">
+                        <div class="list-group">
+                            
+                            <a href="{% url 'order_alldetails' %}" class="list-group-item list-group-item-action">All details</a>
+                           
+                        </div>
+                    </div>
+                    <div class="tab-pane fade"
+                         id="list-Inventory"
+                         role="tabpanel"
+                         aria-labelledby="list-Inventory-list">
+                         <div class="list-group">
+                            <a href="{% url 'purchase_requirements' %}" class="list-group-item list-group-item-action ">Purchase Requirements</a>
+                            <a href="{% url 'raw_materials_details' %}" class="list-group-item list-group-item-action ">Available Raw Materials</a>
+                            <a href="{% url 'wip_details' %}" class="list-group-item list-group-item-action">WIP Inventory</a>
+                            <a href="{% url 'finish_goods_details' %}" class="list-group-item list-group-item-action">Finished Goods</a>
+                        </div>
+                        </div>
+                    <div class="tab-pane fade"
+                         id="list-Maintainence"
+                         role="tabpanel"
+                         aria-labelledby="list-Maintainence-list"> 
+                         <div class="list-group">
+                            <a href="{% url 'maint_alldetails' %}" class="list-group-item list-group-item-action ">Maintainence Schedule</a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade"
+                         id="list-Control"
+                         role="tabpanel"
+                         aria-labelledby="list-Control-list">...</div>
+                </div>
+            </div>
+            <div class="col-8"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                 {% block Servicecontent %}
+        
+                 {% endblock %}
+            </div>
+            <!-- divison for rown ending is next -->
+        </div>
+    </div>
+{% endblock %}

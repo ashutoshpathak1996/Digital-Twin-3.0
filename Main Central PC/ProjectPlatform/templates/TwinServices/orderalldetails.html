@@ -1,0 +1,16 @@
+{% extends 'TwinServices/queriesmain.html' %}
+{% block Servicecontent %}
+    <section id = "orderstatus">
+        <h6 class = "text-center my-4">Details are following</h6>
+        <div class = "row">
+            <a class="mx-2" href="{% url 'order_alldetails_conn' %}"> Click here </a> to fetch details
+             
+        </div>
+        {% block orderstatus%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}

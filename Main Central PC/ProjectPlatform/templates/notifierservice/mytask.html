@@ -1,0 +1,69 @@
+{% extends 'notifierservice/basemain.html' %}
+{%load static %}
+{% block content %}
+{% csrf_token %}
+
+<div class="container">
+    <div class="row">
+      <div class="col sidebar" style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+         <h3 class="text-center my-2"> My tasks </h3><hr>
+                 
+         <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Service Id</th>
+                <th scope="col">Manufacturer Name</th>
+                <th scope="col">Twin Name</th>
+                <th scope="col">Service</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                {% for i in task.services.all %}
+                    <tr>
+                        <th scope="row">{{task.id}}</th>
+                        <td>{{task.manufacturer}}</td>
+                        <td>{{task.twin_selected}}</td>
+                        
+                        <td>{{i}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick = "downloaddata({{task.id}},'{{i}}')"> Download Data</button>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+          </table>
+      </div>
+
+      <!-- Digital representation div.// -->
+      
+
+      <a href="/media/13.xlsx" download id="download" hidden></a>
+
+     
+    </div>
+
+  </div>
+
+  <script>
+      function downloaddata(notificationserviceID,ser_type) {
+          var model_id= notificationserviceID
+          var ser_type = ser_type
+          
+          $.ajax({
+            type:'POST',
+            url:'{% url 'downloaddata' %}',
+            data: {'model_id':model_id,'ser_type':ser_type},
+            success: function(response) {
+                document.getElementById('download').click();
+            } 
+        });
+             
+            
+      };
+    </script>
+
+{% endblock %}

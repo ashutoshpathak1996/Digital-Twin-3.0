@@ -1,0 +1,131 @@
+{%extends 'twinregister/twinregisteration.html'%}
+{% load static %}
+
+
+{% block templatecontent %}
+<section class="section-content">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:520px;" >
+          <article class="card-body">
+        {%include "includes/alerts.html"%}
+            
+            <form action="{% url 'twinregisteration' %}" method="POST">
+          {% csrf_token %}
+    
+    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>display name   </label>
+                              {{ form.display_name }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Twin ID</label>
+                              {{ form.twin_id }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>IP Address      </label>
+                              {{ form.ip_address }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Port Number</label>
+                              {{ form.port_number }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="form-group">
+                        <button type="button" id="pingtwin" class="btn btn-primary btn-block"> Ping Twin!  </button>
+                    </div> <!-- form-group// -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Floor ID     </label>
+                              {{ form.floor_id }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Max Travel in X</label>
+                              {{ form.maxtravel_X }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Max Travel in Y    </label>
+                              {{ form.maxtravel_Y }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Max Travel in Z</label>
+                              {{ form.maxtravel_Z }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Tool Asset   </label>
+                              {{ form.tool_aas }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Spindle Asset</label>
+                              {{ form.spindle_aas }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Coolant Asset   </label>
+                              {{ form.coolant_aas }}
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Other Details link</label>
+                              {{ form.otherdetails_link }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <label>Description   </label>
+                    <div class="form-row">
+                        <div class="col form-group">
+                    
+                              {{ form.description }}
+                        </div> <!-- form-group end.// -->
+                        
+                    </div> <!-- form-row end.// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Register Twin!  </button>
+                    </div> <!-- form-group// -->
+    
+          {{ form.non_field_errors }}
+                </form>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+        <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+    
+    
+    </section>
+    <script>
+        // ping twin function at time of registration for auto filling registration form
+        
+        $('#pingtwin').click(function(){
+            display_name = document.getElementsByName('display_name')[0].value;
+            twin_id = document.getElementsByName('twin_id')[0].value;
+            ip_address = document.getElementsByName('ip_address')[0].value;
+            port_number = document.getElementsByName('port_number')[0].value;
+            fields = ['twin_id','display_name','ip_address','port_number','floor_id','tool_aas','spindle_aas','coolant_aas','maxtravel_X','maxtravel_Y','maxtravel_Z','description','otherdetails_link']
+
+            $.ajax({
+                type:'GET',
+                url:'{% url 'pingtwin' %}',
+                data: {'display_name': display_name,'twin_id':twin_id,'ip_address':ip_address,'port_number':port_number},
+                success: function(response) {
+                    console.log(response);
+                    
+                    for(key in response.data){
+                        
+                        if (fields.includes(key)) {
+                            document.getElementsByName(key)[0].value = response.data[key];
+                       
+                        }
+                    }
+                },
+                
+            });
+        });
+    </script>
+{% endblock %}

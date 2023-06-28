@@ -1,0 +1,139 @@
+{% extends 'baseinterface.html' %}
+{% block content %}
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 border border-primary"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                 <h5 class = " mt-4 text-center">Connected Twins</h5>
+                <hr>
+                {%include "includes/alerts.html"%}
+                <div class="accordion" id="accordionExample1">
+                  {% for twins in registered_models_connected %}
+            
+                  
+                    <div class="card">
+                      <div class="card-header" id="heading{{forloop.counter}}">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapse{{forloop.counter}}">
+                            {{twins.display_name}}
+                          </button>
+                        </h2>
+                      </div>
+                  
+                      <div id = "collapse{{forloop.counter}}"class="collapse " aria-labelledby="disheading{{forloop.counter}}" data-parent="#accordionExample1">
+                        <div class="card-body">
+                          <code>         Status : Connected </code>
+                          <a href="{% url 'twindisplaydata' %}" class="btn btn-primary mx-5"> Display Data </a>
+                          <button type="button" onclick = "disconnectionRequest({{twins.id}})" class="btn btn-primary mx-2"> Disconnect </button>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  </div>
+
+
+
+
+
+
+
+
+            </div>
+            
+            <div class="col-6 border border-primary"
+                 style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+                <h5 class = " mt-4 text-center">Disconnected Twins</h5>
+                <hr>
+
+
+                <div class="accordion" id="accordionExample">
+                  {% for twins in registered_models_disconnected %}
+            
+                  
+                    <div class="card">
+                      <div class="card-header" id="disheading{{forloop.counter}}">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn-block text-left" type="button"  data-toggle="collapse" data-target="#discollapse{{forloop.counter}}" aria-expanded="false" aria-controls="discollapse{{forloop.counter}}">
+                            {{twins.display_name}}
+                          </button>
+                        </h2>
+                      </div>
+                  
+                      <div id = "discollapse{{forloop.counter}}"class="collapse " aria-labelledby="disheading{{forloop.counter}}" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <code>         Status : Disconnected </code>
+                          <button type="button" onclick = "connectionRequest({{twins.id}})" class="btn btn-primary mx-5"> Connect </button>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  </div>
+                
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+<script> 
+  
+  // Connect button functionality
+  function connectionRequest(id_twin_model) {
+    var model_id = id_twin_model;
+    
+    $.ajax({
+        type:'POST',
+        url:'{% url 'connectionReqTwin' %}',
+        data: {'model_id':model_id},
+        success: function(response) {
+          //response = Json.parse(response);
+          if (response.status == "success") {
+            //console.log(response)
+            location.reload();
+          } else if (response.status == "failed") {
+            location.reload();
+
+          } 
+        }
+        
+        
+    });
+
+  };
+
+  // Connect button functionality
+  function disconnectionRequest(id_twin_model) {
+    var model_id = id_twin_model;
+    
+    $.ajax({
+        type:'POST',
+        url:'{% url 'disconnectionReqTwin' %}',
+        data: {'model_id':model_id},
+        success: function(response) {
+          //response = Json.parse(response);
+          if (response.status == "success") {
+            //console.log(response)
+            location.reload();
+          } else if (response.status == "failed") {
+            location.reload();
+
+          } 
+        }
+        
+        
+    });
+
+  };
+
+
+
+</script>
+{% endblock %}

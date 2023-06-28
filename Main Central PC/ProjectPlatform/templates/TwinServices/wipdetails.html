@@ -1,0 +1,16 @@
+{% extends 'TwinServices/queriesmain.html' %}
+{% block Servicecontent %}
+    <section id = "wipdetail">
+        <h6 class = "text-center my-2">Details of the WIP Inventory are following</h6>
+        <div class = "row">
+            <a class="mx-2" href="{% url 'wipdetail_conn' %}"> Click Here</a> to fetch details
+            
+        </div>
+        {% block wip%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}

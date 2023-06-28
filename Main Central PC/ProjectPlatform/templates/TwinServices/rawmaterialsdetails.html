@@ -1,0 +1,16 @@
+{% extends 'TwinServices/queriesmain.html' %}
+{% block Servicecontent %}
+    <section id = "rawmatdetail">
+        <h6 class = "text-center my-4">Details of the Raw materials are following</h6>
+        <div class = "row">
+            <a class="mx-5" href="{% url 'raw_material_floor' %}"> Floor Wise Details</a> 
+            <a class="mx-5" href="{% url 'raw_material_machine' %}"> Machine Wise Details</a> 
+        </div>
+        {% block raw_material%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}

@@ -1,0 +1,124 @@
+{%extends 'twinregister/twinconnection.html'%}
+{% load static %}
+
+
+{% block connectblock %}
+<section class="section-content">
+    <div class="row">
+        <div class="col-lg-4 my-1">
+            <h5> Name : {{ selected_model.display_name }} </h5>
+        </div>
+        <div class="col-lg-4 my-1">
+            <h5>Twin Id : {{ selected_model.twin_id }} </h5>
+        </div>
+        <div class="col-lg-4 ">
+            {% if selected_model.is_connected %}
+                <button type="button" onclick="connectbtn()"class="btn btn-outline-primary float-right", id ="twindisconnectbtn">Disconnect </button>
+            {% else %}
+                <button type="button" onclick="connectbtn()" class="btn btn-outline-primary float-right",id ="twinconnectbtn">Connect </button>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        {% for key, value in selected_model.items %}
+        <div class="row my-1">
+        {% if '.json' in value and 'http' in value %}
+        <div id="accordion">
+            <div class="card">
+              <div id="headingFive">
+                
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{key}}
+                  </button>
+                
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body aasdiv" data-value={{value}}>
+                    <div class = "aascontent">
+                        {{value}} 
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row my-1 ml-2">
+            <h6 class="text-uppercase">
+            {{key}} </h6>  :   {{ value}}
+            
+        </div>
+        {% endif %}
+        </div> <!-- form-group end.// -->
+        {% endfor %}
+    </div>       
+        
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+    
+    
+    </section>
+
+    <script>
+        //setTimeout('location.reload()', 10000)
+        var aasdivs = document.getElementsByClassName("aasdiv"); 
+        var len = aasdivs.length;
+        async function getapi(url,count) {
+    
+            // Storing response
+            const response = await fetch(url);
+            
+            // Storing data in form of JSON
+            var data = await response.json();
+            var keys = Object.keys(data);
+            var values = Object.values(data);
+            const elem = document.getElementsByClassName('aascontent');
+            scripthtml = ` `;
+            for(var i=0 ; i<keys.length ; i++) {
+                    scripthtml += `<div class="row"> ${keys[i]} : ${values[i]} </div>`;  
+            };
+            elem[count].innerHTML = scripthtml;
+            
+            
+        }
+        var count =0;
+        for(var i = 0; i < len; i++) {
+            
+            var url_aas = aasdivs[i].getAttribute("data-value");
+            getapi(url_aas,count);
+            count += 1;
+        };
+
+        // Connect button functionality
+        function connectbtn() {
+            var model_id = {{selected_model.id}};
+            var twin_id = {{selected_model.twin_id}};
+            var ip_address = '{{selected_model.ip_address}}';
+            var port_number = {{selected_model.port_number}};
+            var display_name = '{{selected_model.display_name}}';
+            $.ajax({
+                type:'GET',
+                url:'{% url 'connecttwinbtn' %}',
+                data: {'display_name': display_name,'twin_id':twin_id,'ip_address':ip_address,'port_number':port_number,'model_id':model_id},
+                success: function(response) {
+                    
+                },
+                
+            });
+
+          }
+        
+
+    </script>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+

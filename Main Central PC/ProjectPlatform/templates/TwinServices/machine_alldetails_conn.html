@@ -1,0 +1,58 @@
+
+{% extends 'TwinServices/machinealldetails.html' %}
+{% block condition_status %}
+<section>
+
+    <hr>
+
+    <h6 class="text-center"> Machine Vibration Details </h6>
+    
+    
+       
+
+            
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">p-Value</th>
+                        <th scope="col">Temperature(degree Celsius)</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        
+                            <tr>
+                                <th scope="row">{{item.Time}}</th>
+                                <td>{{item.p_value}}</td> 
+                                <td>{{item.temp}}</td>
+                                
+                            </tr>                     
+                            {% endfor %}
+                        
+                </tbody>
+            
+              </table>
+             
+                        
+              
+              
+
+      
+
+    
+   
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

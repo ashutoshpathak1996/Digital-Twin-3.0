@@ -1,0 +1,24 @@
+{% extends 'TwinServices/recommendation_service.html' %}
+{% block recommendationcontent %}
+    <section id = "alarm_generation">
+        <h6 class = "text-center my-4">Details are following</h6>
+        <div class = "row">
+            {% for item in data %}
+            <div class="d-flex flex-column bd-highlight mb-3">
+                {% if item.recommend_coolant == 'YES'%}
+                <div class="p-3 mb-2 bg-success text-white">TURN ON coolant : Recent Mean Temperature of Machining is {{item.avg_temp}} at time {{item.Time_m}}</div>
+                {% endif %}
+                {% if item.tool_change == 'YES'%}
+                <div class="p-3 mb-2 bg-primary text-white">Change Tool as tool is Worn at {{item.Time_t}}</div>
+                {% endif %}
+                {% if item.recommend_coolant == 'NO' and item.tool_change == 'NO'%}
+                <div class="p-2 bd-highlight">No recommendations</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% block alarm_generation%}
+        {% endblock %}
+    
+</section>
+{% endblock %}

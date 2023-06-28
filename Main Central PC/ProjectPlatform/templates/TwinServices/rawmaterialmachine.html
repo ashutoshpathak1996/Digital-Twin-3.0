@@ -1,0 +1,54 @@
+
+{% extends 'TwinServices/rawmaterialsdetails.html' %}
+{% block raw_material %}
+<section>
+
+    <hr>
+
+    {% for key, value in data.items %}
+
+        {% if value%}
+            <h6> {{key}} </h6>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    
+                    <th scope="col">Material Code</th>
+                    <th scope="col">Material Name</th>
+                    <th scope="col">Available Quantity</th>
+                    <th scope="col">Minimum Required Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for itemlist in value %}
+                    
+                        <tr>
+                            <th scope="row">{{itemlist.Material_Code}}</th>
+                            <td>{{itemlist.Material_Name}}</td>
+                            <td>{{itemlist.Availabe_Quantity}}</td>
+                            <td>{{itemlist.Minimum_Required}}</td>
+                        </tr>
+                    
+                    
+                    
+                  
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+              
+
+        {% endif %}
+
+    {% endfor %}
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

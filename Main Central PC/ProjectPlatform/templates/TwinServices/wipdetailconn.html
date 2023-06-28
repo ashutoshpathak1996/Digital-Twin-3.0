@@ -1,0 +1,95 @@
+
+{% extends 'TwinServices/wipdetails.html' %}
+{% block wip%}
+<section>
+
+    <hr>
+    <h6> Total No. of Under Process Jobs = {{TotalUnderprocessJob}} <span class="mx-4"> Total No. of Waiting Jobs = {{TotalWaitingJob}} </span></h6>
+    
+    <h6 class="text-center"> Under Process Job Details </h6><hr>
+    {% for item in data %}
+        {% for key, value in item.items %}
+
+            {% if key == 'underprocess' %}
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Job Id</th>
+                        <th scope="col">Twin Name</th>
+                        <th scope="col">Floor No.</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for itemlist in value %}
+                        
+                            <tr>
+                                <th scope="row">{{itemlist}}</th>
+                                <td>{{item.twinName}}</td>
+                                <td>{{item.floorno}}</td>
+                                
+                            </tr>                     
+                        
+                        {% endfor %}
+                </tbody>
+            
+              </table>
+              {% endif %}
+            {% endfor %}
+              
+              
+
+      
+
+    {% endfor %}
+    <h6 class="text-center"> Waiting Job Details </h6><hr>
+    {% for item in data %}
+        {% for key, value in item.items %}
+
+            {% if key == 'waiting' %}
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Job Id</th>
+                        <th scope="col">Twin Name</th>
+                        <th scope="col">Floor No.</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for itemlist in value %}
+                        
+                            <tr>
+                                <th scope="row">{{itemlist}}</th>
+                                <td>{{item.twinName}}</td>
+                                <td>{{item.floorno}}</td>
+                                
+                            </tr>                     
+                        
+                        {% endfor %}
+                </tbody>
+            
+              </table>
+              {% endif %}
+            {% endfor %}
+              
+              
+
+      
+
+    {% endfor %}
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'TwinServices/alarmsmain.html' %}
+{% block Servicecontent %}
+    <section id = "tool_alarm_generation">
+        <h6 class = "text-center my-4">Tool Condition</h6>
+        <div class="d-flex justify-content-center align-items-center">
+            {% for item in data %}
+            {% if item.alarm == 'ON'%}
+            <div class="container" style="background-color: rgb(255, 0, 0);height: 100px;width:205px">
+                <h1 style="text-align: center;">{{item.tool_condition}}</h1>
+                <h1 style="text-align: center;">Critical</h1>
+                <p style="text-align: center;">Time : {{item.Time}}</p>
+            </div>
+            {% endif %}
+            {% if item.alarm == 'OFF'%}
+            <div class="container" style="background-color: rgb(0, 255, 34);height: 100px;width:205px">
+                <h1 style="text-align: center;">{{item.tool_condition}}</h1>
+                <h1 style="text-align: center;">Normal</h1>
+                <p style="text-align: center;">Time : {{item.Time}}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <!--
+        <div class = "row">
+            {% for item in data %}
+            {% if item.alarm == 'ON'%}
+            <hr size="8" width="90%" color="red"> 
+            The tool is {{item.tool_condition}} at time {{item.Time}} and should be replaced
+            {% endif %}
+            {% if item.alarm == 'OFF'%}
+            <hr size="8" width="90%" color="green"> 
+            The tool is {{item.tool_condition}} at time {{item.Time}}
+            {% endif %}
+            {% endfor %}
+        </div>
+        -->
+        {% block tool_alarm_generation%}
+        {% endblock %}
+    
+</section>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'baseinterface.html' %}
+ 
+
+{% block content %}
+{% csrf_token %}
+<div class="container">
+    <div class="row">
+      <div class="col sidebar" style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+          
+
+        <div class="list-group my-2">
+            
+            <a href="{% url 'recommendation_service_conn' %}" class="list-group-item list-group-item-action">Machine Twin Recommendations</a>
+            
+          </div>       
+      </div>
+
+      <!-- Digital representation div.// -->
+      <div class="col-10 border border-primary" style="height: calc(100vh - 73px) ; overflow-y : scroll; position: sticky; top: 73px">
+        
+        
+        {% block recommendationcontent %}
+        
+        {% endblock %}
+      </div>
+
+    </div>
+
+  </div>
+{% endblock %}

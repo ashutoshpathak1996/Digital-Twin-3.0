@@ -1,0 +1,26 @@
+{% extends 'TwinServices/queriesmain.html' %}
+{% block Servicecontent %}
+    <section id = "freemachineSection">
+        <h6 class = "text-center my-4">Machines which are not loaded are Following</h6>
+        <hr>
+        <div class="list-group">
+            {% for twin in registered_models_loaded %}
+                <a href="#" class="list-group-item list-group-item-action my-2 ">{{ twin }}</a>
+            {% endfor %}
+        </div>
+    
+</section>
+
+<script> 
+    $(document).ready(function(){
+    setInterval(function(){
+          $("#freemachineSection").load(window.location.href + " #freemachineSection" );
+    }, 1000);
+    });
+
+
+
+
+    
+    </script>
+{% endblock %}

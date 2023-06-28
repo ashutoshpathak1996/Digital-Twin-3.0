@@ -1,0 +1,64 @@
+
+{% extends 'TwinServices\Querying_maintainence\maintainence.html' %}
+{% block maintstatus %}
+<section>
+
+    <hr>
+
+    <h6 class="text-center"> Schedule </h6>
+    
+    
+       
+
+            
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        
+                        <th scope="col">Machine</th>
+                        <th scope="col">Due Date(YY-MM-DD)</th>
+                        <th scope="col">Due Time</th>
+                        
+                        <th scope="col">Type</th>
+                        <th scope="col">Delay in production(hrs)</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        
+                            <tr>
+                                <th scope="row">{{item.machine_name}}</th>
+                                <td>{{item.due_date}}</td>
+                                <td>{{item.due_time}}</td>
+                                <th scope="row">{{item.type}}</th>
+                                <th scope="row">{{item.eff_on_prod}}</th>
+                                
+                                
+                            </tr>                     
+                            {% endfor %}
+                        
+                </tbody>
+            
+              </table>
+             
+                        
+              
+              
+
+      
+
+    
+   
+
+
+</section>
+
+
+
+
+
+
+
+{% endblock %}

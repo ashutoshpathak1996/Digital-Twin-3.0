@@ -1,0 +1,44 @@
+{% extends 'TwinServices/alarmsmain.html' %}
+{% block Servicecontent %}
+    <section id = "alarm_generation">
+        <h6 class = "text-center my-4">Machining Temperature</h6>
+        <div class="d-flex justify-content-center align-items-center">
+            {% for item in data %}
+            {% if item.alarm == 'ON'%}
+            <div class="container" style="background-color: rgb(255, 0, 0);height: 100px;width:275px">
+                <h1 style="text-align: center;">{{item.avg_temp}}(degree)</h1>
+                <h1 style="text-align: center;">Critical</h1>
+                <p style="text-align: center;">Time : {{item.Time}}</p>
+            </div>
+            {% endif %}
+            {% if item.alarm == 'OFF'%}
+            <div class="container" style="background-color: rgb(0, 255, 34);height: 100px;width:250px">
+                <h1 style="text-align: center;">{{item.avg_temp}}(degree)</h1>
+                <h1 style="text-align: center;">Normal</h1>
+                <p style="text-align: center;">Time : {{item.Time}}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <!--
+        <div class = "row">
+            {% for item in data %}
+            {% if item.alarm == 'ON'%}
+            <hr size="8" width="90%" color="red"> 
+            The recent mean temperature of machine is {{item.avg_temp}} at time {{item.Time}} which is higher than critical
+            {% endif %}
+            {% if item.alarm == 'OFF'%}
+            <hr size="8" width="90%" color="green"> 
+            The recent mean temperature of machine is {{item.avg_temp}} at time {{item.Time}} which is normal
+            {% endif %}
+            {% endfor %}
+        </div>
+        -->
+        {% block alarm_generation%}
+        {% endblock %}
+    
+</section>
+
+
+   
+{% endblock %}
