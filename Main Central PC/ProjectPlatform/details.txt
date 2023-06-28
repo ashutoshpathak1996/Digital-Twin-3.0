@@ -1,0 +1,4 @@
+Root- projectplatform
+project- twinmarket
+
+Next : we need to set the view function of twnin regiser according to view function of register in account also we need to set the server at the backend running also create some dummy json file for tool to upload it on drive link. save that registered user in the provided user only .
