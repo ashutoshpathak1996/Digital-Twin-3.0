@@ -1,0 +1,19 @@
+{
+"twin_id": 1001,
+"floor_id": 10,
+"emergency_on": 0,
+"power_on": 0,
+"is_loaded": 0,
+"cycle_on": 0,
+"maxtravel_X": 20,
+"maxtravel_Y": 20,
+"maxtravel_Z": 20,
+"wcsoffset_X": 100,
+"wcsoffset_Y": 80,
+"wcsoffset_Z": 10,
+"tool_aas": "https://raw.githubusercontent.com/muditkumarsand/apis/gh-pages/tool2.json",
+"spindle_aas": "https://raw.githubusercontent.com/muditkumarsand/apis/gh-pages/spindle1.json",
+"coolant_aas": "https://raw.githubusercontent.com/muditkumarsand/apis/gh-pages/coolant1.json",
+"programfile_link": "https://www.google.com/",
+"otherdetails_link": "https://www.google.com/"
+}
