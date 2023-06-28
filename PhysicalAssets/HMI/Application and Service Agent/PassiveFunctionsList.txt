@@ -1,0 +1,6 @@
+floor_div=>0
+report_machine_generation=>request_machine_report
+alarm_machine_generation=>request_machine_alarm
+alarm_tool_generation=>request_tool_alarm
+recommendation=>request_recommendation
+report_tool_generation=>request_tool_report

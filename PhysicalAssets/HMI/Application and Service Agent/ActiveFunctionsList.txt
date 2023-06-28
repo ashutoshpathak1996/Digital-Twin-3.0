@@ -1,0 +1,14 @@
+some_actve_function=>0
+analytic_machine_condition=>0
+analytic_tool_condition=>0
+
+
+
+
+
+
+
+
+
+
+

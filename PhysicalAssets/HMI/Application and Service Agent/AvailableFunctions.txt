@@ -1,0 +1,5 @@
+Demo=>DemoFunction
+AnalyticFunction=>analytic_machine_condition|analytic_tool_condition
+ReportGeneration=>report_machine_generation|report_tool_generation
+AlarmGeneration=>alarm_machine_generation|alarm_tool_generation
+RecommendationGeneration=>recommendation

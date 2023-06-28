@@ -1,0 +1,8 @@
+function1=>[function2, function3]
+analytic_machine_condition=>[]
+analytic_tool_condition=>[]
+report_machine_generation=>['analytic_machine_condition']
+alarm_machine_generation=>['analytic_machine_condition']
+alarm_tool_generation=>['analytic_tool_condition']
+recommendation=>['analytic_machine_condition']
+report_tool_generation=>['analytic_tool_condition']
